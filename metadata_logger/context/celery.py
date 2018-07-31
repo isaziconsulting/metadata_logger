@@ -22,8 +22,6 @@ def _is_in_context():
 
 
 def _set_metadata_header(m: dict, headers: dict):
-    if not headers:
-        headers = {}
     headers[_CELERY_X_HEADER] = m
 
 
@@ -37,6 +35,8 @@ class CeleryMetadataContextManager(BaseMetadataContextManager):
     @staticmethod
     def set_metadata(m: dict):
         _is_in_context()
+        if not current_task.request.headers:
+            current_task.request.headers = {}
         _set_metadata_header(m, current_task.request.headers)
 
 
@@ -56,4 +56,7 @@ def _on_before_publish_insert_metadata_header(headers, **kwargs):
     :param Dict headers: The headers of the message
     :param kwargs: Any extra keyword arguments
     """
+    if headers is None:
+        logger.warning("HEADERS IS NONE: %s", headers)
+        headers = {}
     _set_metadata_header(manager.metadata, headers)
