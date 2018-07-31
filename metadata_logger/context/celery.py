@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 def _is_in_context():
-    if current_task._get_current_object() is None:
+    if current_task._get_current_object() is None:  # pylint: disable=protected-access
         raise ExecutedOutsideContext()
 
 
@@ -50,7 +50,7 @@ def enable_context_metadata_propagation():
         _on_before_publish_insert_metadata_header)
 
 
-def _on_before_publish_insert_metadata_header(headers, **kwargs):
+def _on_before_publish_insert_metadata_header(headers, **kwargs):  # pylint: disable=unused-argument
     """
     This function is meant to be used as signal processor for "before_task_publish".
     :param Dict headers: The headers of the message
