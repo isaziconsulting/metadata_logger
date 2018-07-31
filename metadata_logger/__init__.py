@@ -16,5 +16,16 @@ from .context import MultiContextMetadataManager
 
 logger = logging.getLogger(__name__)
 
-
 manager = MultiContextMetadataManager()
+
+
+def set_current_metadata(metadata: dict):
+    if not metadata:
+        logger.warning("Trying to set metadata to nothing: %s", metadata)
+        return
+    logger.debug("Setting METADATA: %s", metadata)
+    manager.metadata = metadata
+
+
+def get_current_metadata() -> dict:
+    return manager.metadata
