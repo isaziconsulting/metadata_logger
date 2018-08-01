@@ -11,7 +11,7 @@ setuptools.setup(
     description="A small library that allows arbitrary metadata to be automatically logged and passed around different contexts (e.g. Flask, Celery).\nHeavily based on https://github.com/Workable/flask-log-request-id",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # url="https://github.com/pypa/sampleproject",
+    url="https://github.com/isaziconsulting/metadata_logger",
     packages=setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 3",
