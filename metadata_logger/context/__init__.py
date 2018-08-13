@@ -13,7 +13,6 @@ class MultiContextMetadataManager(object):
 
     def __init__(self):
         self.ctx_managers = []
-        self._metadata = {}
 
     def register_manager(self, ctx_manager: BaseMetadataContextManager):
         """
@@ -28,9 +27,7 @@ class MultiContextMetadataManager(object):
     def metadata(self) -> dict:
         for ctx_manager in self.ctx_managers:
             try:
-                if not self._metadata:
-                    self._metadata = ctx_manager.get_metadata() or {}
-                return self._metadata
+                return ctx_manager.get_metadata()
             except ExecutedOutsideContext:
                 continue
         return {}
@@ -39,8 +36,6 @@ class MultiContextMetadataManager(object):
     def metadata(self, m: dict):
         for ctx_manager in self.ctx_managers:
             try:
-                new_metadata = {k: v for k, v in m.items() if v is not None}
-                self._metadata = {**self.metadata, **new_metadata}
-                return ctx_manager.set_metadata(self._metadata)
+                ctx_manager.set_metadata(m)
             except ExecutedOutsideContext:
                 continue
