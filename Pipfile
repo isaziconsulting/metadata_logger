@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-celery = "*"
+celery = {version = "*", extras = ["redis"]}
 flask = "*"
+metadata-logger = {editable = true, path = "."}
 
 [dev-packages]
 pylint = "*"
