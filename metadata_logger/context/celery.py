@@ -29,13 +29,14 @@ class CeleryMetadataContextManager(BaseMetadataContextManager):
     @staticmethod
     def get_metadata():
         _is_in_context()
-        m = current_task.request.get(_CELERY_X_HEADER, {})
-        return m
+        if current_task.request.headers:
+            return current_task.request.headers.get(_CELERY_X_HEADER, {})
+        return current_task.request.get(_CELERY_X_HEADER, {})
 
     @staticmethod
     def set_metadata(m: dict):
         _is_in_context()
-        if not current_task.request.headers:
+        if current_task.request.headers is None:
             current_task.request.headers = {}
         _set_metadata_header(m, current_task.request.headers)
 
@@ -57,6 +58,6 @@ def _on_before_publish_insert_metadata_header(headers, **kwargs):  # pylint: dis
     :param kwargs: Any extra keyword arguments
     """
     if headers is None:
-        logger.warning("HEADERS IS NONE: %s", headers)
+        logger.warning("HEADERS IS NONE")
         headers = {}
     _set_metadata_header(manager.metadata, headers)
