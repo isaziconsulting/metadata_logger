@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4a451fbf3395a7de2bf3205f6dd2b63b0f1df496612e5007e73b4219d6be676e"
+            "sha256": "545b9319807ae27829ddccd5bba1315753724eee664a3ae4edcb3edb3bbd0264"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,11 +31,10 @@
         },
         "celery": {
             "hashes": [
-                "sha256:77dab4677e24dc654d42dfbdfed65fa760455b6bb563a0877ecc35f4cfcfc678",
-                "sha256:ad7a7411772b80a4d6c64f2f7f723200e39fb66cf614a7fdfab76d345acc7b13"
+                "sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f",
+                "sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5"
             ],
-            "index": "pypi",
-            "version": "==4.2.1"
+            "version": "==4.1.1"
         },
         "click": {
             "hashes": [
@@ -49,7 +48,6 @@
                 "sha256:2271c0070dbcb5275fad4a82e29f23ab92682dc45f9dfbc22c02ba9b9322ce48",
                 "sha256:a080b744b7e345ccfcbc77954861cb05b3c63786e93f2b3875e0913d44b43f05"
             ],
-            "index": "pypi",
             "version": "==1.0.2"
         },
         "itsdangerous": {
@@ -80,6 +78,10 @@
         },
         "metadata-logger": {
             "editable": true,
+            "extras": [
+                "celery",
+                "flask"
+            ],
             "path": "."
         },
         "pytz": {
@@ -88,13 +90,6 @@
                 "sha256:ffb9ef1de172603304d9d2819af6f5ece76f2e85ec10692a524dd876e72bf277"
             ],
             "version": "==2018.5"
-        },
-        "redis": {
-            "hashes": [
-                "sha256:8a1900a9f2a0a44ecf6e8b5eb3e967a9909dfed219ad66df094f27f7d6f330fb",
-                "sha256:a22ca993cea2962dbb588f9f30d0015ac4afcc45bee27d3978c0dbe9e97c6c0f"
-            ],
-            "version": "==2.10.6"
         },
         "vine": {
             "hashes": [
